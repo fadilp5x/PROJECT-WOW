@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* UNSEEN Brand Colors */
+  --color-ivory: #FAF8F3;
+  --color-midnight: #08090B;
+  --color-lime: #CDF22B;
+  --color-lime-pale: #ECFFB6;
+  --color-lime-electric: #D6FB00;
+  --color-teal: #00545F;
+  --color-teal-light: #007A88;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background: #FAF8F3;
+  color: #08090B;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Selection */
+::selection {
+  background: rgba(205, 242, 43, 0.35);
+  color: #08090B;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #FAF8F3; }
+::-webkit-scrollbar-thumb { background: #CDF22B; border-radius: 3px; }
+
+/* Display font utility */
+.font-display {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+}
+
+/* Gradient text */
+.text-gradient-lime {
+  background: linear-gradient(135deg, #CDF22B 0%, #D6FB00 50%, #ECFFB6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-teal-lime {
+  background: linear-gradient(135deg, #00545F 0%, #CDF22B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Noise overlay texture */
+.noise-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow effect */
+.lime-glow {
+  box-shadow: 0 0 40px rgba(205, 242, 43, 0.3), 0 0 80px rgba(205, 242, 43, 0.1);
+}
+
+.lime-glow-sm {
+  box-shadow: 0 0 20px rgba(205, 242, 43, 0.25);
+}
+
+/* Card hover */
+.card-unseen {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.card-unseen:hover {
+  transform: translateY(-6px);
+}
+
+/* Animated gradient bg */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(1deg); }
+  66% { transform: translateY(-6px) rotate(-1deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(10px) rotate(-1deg); }
+  66% { transform: translateY(5px) rotate(1deg); }
+}
+
+.float-anim { animation: float 6s ease-in-out infinite; }
+.float-anim-reverse { animation: floatReverse 7s ease-in-out infinite; }
+.float-anim-slow { animation: float 9s ease-in-out infinite; }
+
+/* Pulse lime */
+@keyframes pulseLime {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+.pulse-lime { animation: pulseLime 3s ease-in-out infinite; }
+
+/* Line draw */
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+/* Particle drift */
+@keyframes particleDrift {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-80px) translateX(20px); opacity: 0; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .float-anim,
+  .float-anim-reverse,
+  .float-anim-slow,
+  .pulse-lime,
+  .gradient-animate {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}

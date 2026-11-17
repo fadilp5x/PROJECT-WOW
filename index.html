@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>UNSEEN — Make the Invisible Visible | Resource Intelligence Platform</title>
+  <meta name="description" content="UNSEEN reveals the hidden losses happening around you — time wasted, effort unnoticed, privacy exposed, and opportunities missed. A Resource Intelligence Platform." />
+
+  <!-- Fonts: Space Grotesk (Display) & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: '#FAF8F3',
+            midnight: '#08090B',
+            lime: '#CDF22B',
+            'lime-pale': '#ECFFB6',
+            'lime-electric': '#D6FB00',
+            teal: '#00545F',
+            coral: '#FF4B4B',
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            'tactile-lime': '0 5px 0 #95ba07, 0 12px 28px rgba(205, 242, 43, 0.35)',
+            'tactile-dark': '0 5px 0 #000000, 0 12px 28px rgba(8, 9, 11, 0.3)',
+            'tactile-light': '0 3px 0 rgba(8, 9, 11, 0.12)',
+            'glow-lime': '0 0 50px rgba(205, 242, 43, 0.4), 0 0 100px rgba(205, 242, 43, 0.2)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #FAF8F3;
+      color: #08090B;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    ::selection { background: rgba(205,242,43,0.45); color: #08090B; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #FAF8F3; }
+    ::-webkit-scrollbar-thumb { background: #CDF22B; border-radius: 4px; }
+
+    .font-display { font-family: 'Space Grotesk', system-ui, sans-serif; }
+
+    /* Tactile Duolingo-style Button Effects */
+    .btn-tactile-lime {
+      background: #CDF22B;
+      color: #08090B;
+      box-shadow: 0 4px 0 #95ba07, 0 10px 24px rgba(205, 242, 43, 0.3);
+      transition: transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.18s ease;
+    }
+    .btn-tactile-lime:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #95ba07, 0 16px 32px rgba(205, 242, 43, 0.45);
+    }
+    .btn-tactile-lime:active {
+      transform: translateY(2px) !important;
+      box-shadow: 0 1px 0 #95ba07, 0 4px 12px rgba(205, 242, 43, 0.2) !important;
+    }
+
+    .btn-tactile-dark {
+      background: #08090B;
+      color: #CDF22B;
+      box-shadow: 0 4px 0 #000000, 0 10px 24px rgba(8, 9, 11, 0.25);
+      transition: transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.18s ease;
+    }
+    .btn-tactile-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #000000, 0 16px 30px rgba(205, 242, 43, 0.22);
+    }
+    .btn-tactile-dark:active {
+      transform: translateY(2px) !important;
+      box-shadow: 0 1px 0 #000000 !important;
+    }
+
+    .btn-tactile-secondary {
+      background: transparent;
+      color: #08090B;
+      border: 1.5px solid rgba(8, 9, 11, 0.2);
+      box-shadow: 0 3px 0 rgba(8, 9, 11, 0.12);
+      transition: transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.18s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .btn-tactile-secondary:hover {
+      transform: translateY(-2px);
+      border-color: #08090B;
+      background: rgba(205, 242, 43, 0.08);
+      box-shadow: 0 5px 0 rgba(8, 9, 11, 0.18);
+    }
+    .btn-tactile-secondary:active {
+      transform: translateY(2px) !important;
+      box-shadow: 0 1px 0 rgba(8, 9, 11, 0.12) !important;
+    }
+
+    /* Keyframe Animations */
+    @keyframes floatRibbon1 {
+      0%, 100% { transform: translate(0, 0) rotate(-15deg); }
+      50% { transform: translate(-10px, -18px) rotate(-13deg); }
+    }
+    @keyframes floatRibbon2 {
+      0%, 100% { transform: translate(0, 0) rotate(20deg); }
+      50% { transform: translate(12px, 14px) rotate(22deg); }
+    }
+    @keyframes pulseSphere {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(205,242,43,0.5)); }
+      50% { transform: scale(1.06); filter: drop-shadow(0 0 60px rgba(205,242,43,0.85)); }
+    }
+    @keyframes spinOrbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes scanline {
+      0% { top: 0%; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { top: 100%; opacity: 0; }
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(16px) scale(0.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .animate-ribbon-1 { animation: floatRibbon1 7s ease-in-out infinite; }
+    .animate-ribbon-2 { animation: floatRibbon2 8s ease-in-out infinite; }
+    .animate-pulse-sphere { animation: pulseSphere 3.5s ease-in-out infinite; }
+    .animate-spin-slow { animation: spinOrbit 30s linear infinite; }
+    .animate-pulse-dot { animation: pulseDot 2s ease-in-out infinite; }
+    .scanline-bar { animation: scanline 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+    /* Page Container Transition */
+    .page-container {
+      animation: pageIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+    .delay-3 { transition-delay: 0.24s; }
+
+    /* Card Micro-interactions */
+    .card-unseen {
+      transition: transform 0.26s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.26s ease, border-color 0.26s ease;
+    }
+    .card-unseen:hover {
+      transform: translateY(-6px);
+    }
+
+    /* Grid Texture */
+    .bg-grid {
+      background-image: linear-gradient(rgba(8,9,11,0.035) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(8,9,11,0.035) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* Navigation Active Link Styling */
+    .nav-item-active {
+      background: rgba(205, 242, 43, 0.22) !important;
+      color: #08090B !important;
+      font-weight: 700 !important;
+      border: 1px solid rgba(205, 242, 43, 0.5) !important;
+      box-shadow: 0 0 16px rgba(205, 242, 43, 0.28) !important;
+    }
+    .nav-item-active .nav-dot {
+      display: inline-block !important;
+    }
+
+    /* Interactive Tool Simulator Sliders & Gauges */
+    input[type=range] {
+      accent-color: #CDF22B;
+    }
+
+    /* Instagram / App Bottom Navigation Bar */
+    .bottom-nav-bar {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+    }
+    .bottom-nav-item {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      transition: transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), color 0.18s ease;
+    }
+    .bottom-nav-item:active {
+      transform: scale(0.88);
+    }
+    .bottom-item-active .bottom-nav-icon {
+      color: #08090B !important;
+      stroke-width: 2.4px !important;
+      transform: translateY(-1.5px);
+    }
+    .bottom-item-active .bottom-nav-label {
+      color: #08090B !important;
+      font-weight: 700 !important;
+    }
+    .bottom-item-active .bottom-nav-dot {
+      opacity: 1 !important;
+      transform: scale(1) !important;
+    }
+    .bottom-pill-active {
+      background: rgba(205, 242, 43, 0.22) !important;
+      border: 1px solid rgba(205, 242, 43, 0.5) !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-ribbon-1, .animate-ribbon-2, .animate-pulse-sphere, .animate-spin-slow, .scanline-bar, .page-container { animation: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body class="selection:bg-lime/40 selection:text-midnight">
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 01 — COMPACT, MINIMAL NAVIGATION
+       (Height: ~72px, Soft Ivory, Route-based Active Indicator)
+  ════════════════════════════════════════════ -->
+  <header id="main-nav" class="fixed top-0 left-0 right-0 z-50 h-[72px] bg-ivory/95 backdrop-blur-md border-b border-black/[0.07] transition-all">
+    <div class="max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center justify-between">
+      
+      <!-- Left: UNSEEN Logo -->
+      <a href="/" class="nav-route flex items-center gap-2.5 group" aria-label="UNSEEN Home">
+        <div class="relative w-8 h-8 flex-shrink-0">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+            <circle cx="20" cy="20" r="17" stroke="#08090B" stroke-width="2" stroke-dasharray="45 55" stroke-linecap="round" />
+            <circle cx="20" cy="20" r="8.5" fill="#CDF22B" class="transition-transform duration-300 group-hover:scale-110" />
+            <circle cx="20" cy="20" r="3.5" fill="#08090B" />
+            <line x1="2" y1="20" x2="10" y2="20" stroke="#CDF22B" stroke-width="2" stroke-linecap="round" />
+            <line x1="30" y1="20" x2="38" y2="20" stroke="#CDF22B" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <span class="font-display text-xl font-bold tracking-tighter text-midnight">UNSEEN</span>
+      </a>
+
+      <!-- Center Desktop Navigation: Home | About | Tools | Impact | Contact -->
+      <nav class="hidden md:flex items-center gap-1.5 lg:gap-2 bg-midnight/[0.04] p-1.5 rounded-full border border-black/[0.05]" aria-label="Main Navigation">
+        <a href="/" data-route="/" class="nav-route nav-link px-4 py-1.5 rounded-full text-xs font-semibold text-midnight/70 hover:text-midnight transition-all inline-flex items-center gap-1.5">
+          <span class="nav-dot hidden w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_6px_#CDF22B]"></span>
+          <span>Home</span>
+        </a>
+        <a href="/about" data-route="/about" class="nav-route nav-link px-4 py-1.5 rounded-full text-xs font-semibold text-midnight/70 hover:text-midnight transition-all inline-flex items-center gap-1.5">
+          <span class="nav-dot hidden w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_6px_#CDF22B]"></span>
+          <span>About</span>
+        </a>
+        <a href="/tools" data-route="/tools" class="nav-route nav-link px-4 py-1.5 rounded-full text-xs font-semibold text-midnight/70 hover:text-midnight transition-all inline-flex items-center gap-1.5">
+          <span class="nav-dot hidden w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_6px_#CDF22B]"></span>
+          <span>Tools</span>
+        </a>
+        <a href="/impact" data-route="/impact" class="nav-route nav-link px-4 py-1.5 rounded-full text-xs font-semibold text-midnight/70 hover:text-midnight transition-all inline-flex items-center gap-1.5">
+          <span class="nav-dot hidden w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_6px_#CDF22B]"></span>
+          <span>Impact</span>
+        </a>
+        <a href="/contact" data-route="/contact" class="nav-route nav-link px-4 py-1.5 rounded-full text-xs font-semibold text-midnight/70 hover:text-midnight transition-all inline-flex items-center gap-1.5">
+          <span class="nav-dot hidden w-1.5 h-1.5 rounded-full bg-lime shadow-[0_0_6px_#CDF22B]"></span>
+          <span>Contact</span>
+        </a>
+      </nav>
+
+      <!-- Right CTA: Explore UNSEEN -->
+      <div class="flex items-center gap-3">
+        <a href="/tools" class="nav-route btn-tactile-dark inline-flex items-center gap-2 px-4 md:px-5 py-2 rounded-full text-xs font-bold font-display tracking-tight">
+          <span>Explore UNSEEN</span>
+          <span class="text-sm">→</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════
+       MAIN DYNAMIC ROUTE CONTAINER
+  ════════════════════════════════════════════ -->
+  <main id="app-root" class="pt-[72px] pb-24 md:pb-28 min-h-screen">
+    <!-- Rendered dynamically by client router -->
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════
+       GLOBAL FOOTER
+  ════════════════════════════════════════════ -->
+  <footer class="bg-midnight text-ivory pt-20 pb-12 border-t-2 border-lime/30 relative z-20">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+        <!-- Brand Column -->
+        <div class="md:col-span-5 pr-0 md:pr-8">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-full bg-lime flex items-center justify-center font-display font-black text-midnight text-lg">
+              U
+            </div>
+            <span class="font-display font-bold text-2xl tracking-tighter text-ivory">UNSEEN</span>
+          </div>
+
+          <p class="text-lime font-display font-bold text-sm tracking-wide mb-3">
+            Make the Invisible Visible.
+          </p>
+
+          <p class="text-ivory/60 text-sm leading-relaxed font-body mb-6 max-w-sm">
+            A comprehensive Resource Intelligence Platform designed to identify, measure, visualize and help reduce invisible resource losses.
+          </p>
+
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-semibold text-lime font-display">
+            <span class="w-2 h-2 rounded-full bg-lime animate-pulse"></span>
+            Built to reveal what matters.
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="md:col-span-3">
+          <h4 class="font-display font-bold text-xs tracking-widest uppercase text-ivory/90 mb-5">Navigation</h4>
+          <ul class="space-y-3 text-sm text-ivory/60 font-body">
+            <li><a href="/" class="nav-route hover:text-lime transition-colors">Home</a></li>
+            <li><a href="/about" class="nav-route hover:text-lime transition-colors">About Our Mission</a></li>
+            <li><a href="/tools" class="nav-route hover:text-lime transition-colors">Explore Tools</a></li>
+            <li><a href="/impact" class="nav-route hover:text-lime transition-colors">Our Impact</a></li>
+            <li><a href="/contact" class="nav-route hover:text-lime transition-colors">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <!-- Explore Tools -->
+        <div class="md:col-span-4">
+          <h4 class="font-display font-bold text-xs tracking-widest uppercase text-ivory/90 mb-5">Intelligence Tools</h4>
+          <ul class="space-y-3 text-sm text-ivory/60 font-body">
+            <li><a href="/tools#tool-time" class="nav-route hover:text-lime transition-colors">01 // Time Intelligence</a></li>
+            <li><a href="/tools#tool-student" class="nav-route hover:text-lime transition-colors">02 // Student Time Tracker</a></li>
+            <li><a href="/tools#tool-group" class="nav-route hover:text-lime transition-colors">03 // Group Contribution Analyzer</a></li>
+            <li><a href="/tools#tool-privacy" class="nav-route hover:text-lime transition-colors">04 // Privacy & Terms Analyzer</a></li>
+            <li><a href="/tools#tool-metadata" class="nav-route hover:text-lime transition-colors">05 // Image Metadata Intelligence</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-ivory/50 font-body">
+        <p>© 2026 UNSEEN. All rights reserved. Resource Intelligence Platform.</p>
+        <div class="flex items-center gap-6">
+          <a href="/contact" class="nav-route hover:text-lime transition-colors">contact@unseen.intelligence</a>
+          <span>•</span>
+          <span class="text-lime font-display font-bold">Make the Invisible Visible</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       MOBILE-ONLY APP BOTTOM NAVIGATION BAR
+       (Hidden on PC screens with md:hidden; only visible on mobile screens.
+        All 5 icons use the identical clean outline style like Home)
+  ════════════════════════════════════════════ -->
+  <nav id="app-bottom-nav" class="md:hidden fixed bottom-0 left-0 right-0 z-50 pointer-events-none pb-2 sm:pb-3" aria-label="Mobile Navigation">
+    <div class="max-w-md mx-auto px-4 pointer-events-auto">
+      <div class="bottom-nav-bar bg-ivory/95 backdrop-blur-xl border border-black/10 rounded-3xl shadow-[0_12px_40px_rgba(8,9,11,0.18),0_2px_12px_rgba(205,242,43,0.2)] px-2 sm:px-3 py-1.5 flex items-center justify-around relative">
+        
+        <!-- 1. HOME -->
+        <a href="/" data-route="/" class="nav-route bottom-nav-item flex flex-col items-center justify-center min-w-[54px] min-h-[48px] py-1 px-1.5 rounded-2xl group" aria-label="Home">
+          <div class="w-6 h-6 flex items-center justify-center mb-0.5">
+            <svg class="bottom-nav-icon w-5 h-5 text-midnight/50 transition-all duration-200 group-hover:text-midnight group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9.5L12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <span class="bottom-nav-label text-[10px] font-display font-medium text-midnight/50 tracking-tight transition-colors">Home</span>
+          <span class="bottom-nav-dot w-1.5 h-1.5 rounded-full bg-lime opacity-0 transition-opacity duration-200 mt-0.5 shadow-[0_0_6px_#CDF22B]"></span>
+        </a>
+
+        <!-- 2. ABOUT -->
+        <a href="/about" data-route="/about" class="nav-route bottom-nav-item flex flex-col items-center justify-center min-w-[54px] min-h-[48px] py-1 px-1.5 rounded-2xl group" aria-label="About">
+          <div class="w-6 h-6 flex items-center justify-center mb-0.5">
+            <svg class="bottom-nav-icon w-5 h-5 text-midnight/50 transition-all duration-200 group-hover:text-midnight group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <span class="bottom-nav-label text-[10px] font-display font-medium text-midnight/50 tracking-tight transition-colors">About</span>
+          <span class="bottom-nav-dot w-1.5 h-1.5 rounded-full bg-lime opacity-0 transition-opacity duration-200 mt-0.5 shadow-[0_0_6px_#CDF22B]"></span>
+        </a>
+
+        <!-- 3. TOOLS (Same identical clean outline style as Home) -->
+        <a href="/tools" data-route="/tools" class="nav-route bottom-nav-item flex flex-col items-center justify-center min-w-[54px] min-h-[48px] py-1 px-1.5 rounded-2xl group" aria-label="Tools">
+          <div class="w-6 h-6 flex items-center justify-center mb-0.5">
+            <svg class="bottom-nav-icon w-5 h-5 text-midnight/50 transition-all duration-200 group-hover:text-midnight group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+            </svg>
+          </div>
+          <span class="bottom-nav-label text-[10px] font-display font-medium text-midnight/50 tracking-tight transition-colors">Tools</span>
+          <span class="bottom-nav-dot w-1.5 h-1.5 rounded-full bg-lime opacity-0 transition-opacity duration-200 mt-0.5 shadow-[0_0_6px_#CDF22B]"></span>
+        </a>
+
+        <!-- 4. IMPACT -->
+        <a href="/impact" data-route="/impact" class="nav-route bottom-nav-item flex flex-col items-center justify-center min-w-[54px] min-h-[48px] py-1 px-1.5 rounded-2xl group" aria-label="Impact">
+          <div class="w-6 h-6 flex items-center justify-center mb-0.5">
+            <svg class="bottom-nav-icon w-5 h-5 text-midnight/50 transition-all duration-200 group-hover:text-midnight group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <span class="bottom-nav-label text-[10px] font-display font-medium text-midnight/50 tracking-tight transition-colors">Impact</span>
+          <span class="bottom-nav-dot w-1.5 h-1.5 rounded-full bg-lime opacity-0 transition-opacity duration-200 mt-0.5 shadow-[0_0_6px_#CDF22B]"></span>
+        </a>
+
+        <!-- 5. CONTACT -->
+        <a href="/contact" data-route="/contact" class="nav-route bottom-nav-item flex flex-col items-center justify-center min-w-[54px] min-h-[48px] py-1 px-1.5 rounded-2xl group" aria-label="Contact">
+          <div class="w-6 h-6 flex items-center justify-center mb-0.5">
+            <svg class="bottom-nav-icon w-5 h-5 text-midnight/50 transition-all duration-200 group-hover:text-midnight group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </div>
+          <span class="bottom-nav-label text-[10px] font-display font-medium text-midnight/50 tracking-tight transition-colors">Contact</span>
+          <span class="bottom-nav-dot w-1.5 h-1.5 rounded-full bg-lime opacity-0 transition-opacity duration-200 mt-0.5 shadow-[0_0_6px_#CDF22B]"></span>
+        </a>
+
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════════════
+       CLIENT ROUTER & MULTI-PAGE TEMPLATES
+  ════════════════════════════════════════════ -->
+  <script>
+    // -------------------------------------------------------------
+    // PAGE TEMPLATE GENERATORS
+    // -------------------------------------------------------------
+
+    // PAGE 1: HOME (/)
+    function renderHomePage() {
+      return `
+        <div class="page-container">
+          <!-- A. HERO SECTION -->
+          <section id="hero-section" class="relative min-h-[90vh] flex items-center bg-grid overflow-hidden py-16 md:py-24" style="background-color: #FAF8F3;">
+            <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 70% 60% at 85% 25%, rgba(205, 242, 43, 0.16) 0%, transparent 65%), radial-gradient(ellipse 55% 55% at 15% 75%, rgba(0, 84, 95, 0.09) 0%, transparent 60%);"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-20 w-full">
+              <div class="grid lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+                
+                <!-- Left: Headline & Actions -->
+                <div class="lg:col-span-7 flex flex-col justify-center">
+                  <div class="reveal mb-5">
+                    <span class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase font-display bg-midnight text-lime shadow-tactile-light">
+                      <span class="w-2 h-2 rounded-full bg-lime animate-pulse-dot shadow-[0_0_8px_#CDF22B]"></span>
+                      RESOURCE INTELLIGENCE PLATFORM
+                    </span>
+                  </div>
+
+                  <h1 class="reveal delay-1 font-display font-bold leading-[0.92] tracking-[-0.04em] text-midnight mb-6" style="font-size: clamp(3rem, 7.5vw, 6.2rem);">
+                    Make the<br />
+                    <span class="text-lime bg-midnight px-3 py-1 rounded-2xl inline-block shadow-tactile-dark transform -rotate-1 hover:rotate-0 transition-transform">INVISIBLE</span><br />
+                    VISIBLE.
+                  </h1>
+
+                  <p class="reveal delay-2 text-lg md:text-xl text-midnight/70 leading-relaxed max-w-xl mb-8 font-body">
+                    Time wasted. Effort unnoticed. Privacy exposed. Discover the hidden losses happening around you — and turn awareness into action.
+                  </p>
+
+                  <div class="reveal delay-3 flex flex-wrap items-center gap-4 mb-9">
+                    <a href="/tools" class="nav-route btn-tactile-lime inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold font-display text-base">
+                      Explore Our Tools
+                      <span class="text-lg">→</span>
+                    </a>
+                    <a href="/about" class="nav-route btn-tactile-secondary inline-flex items-center gap-2 px-7 py-4 rounded-2xl font-bold font-display text-base">
+                      Discover Our Mission
+                    </a>
+                  </div>
+
+                  <div class="reveal delay-4 flex items-center gap-3 text-xs md:text-sm font-semibold text-midnight/50 font-display">
+                    <div class="w-3 h-3 rounded-full bg-lime border border-midnight"></div>
+                    <span>One platform. <strong class="text-teal font-bold">Multiple perspectives.</strong> Measurable impact.</span>
+                  </div>
+                </div>
+
+                <!-- Right: 3D Visual Composition with Interactive Mouse Tilt -->
+                <div class="lg:col-span-5 relative flex items-center justify-center">
+                  <div id="hero-3d-card" class="relative w-full max-w-[440px] aspect-square flex items-center justify-center transition-transform duration-300 ease-out">
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-lime/25 via-teal/15 to-transparent blur-3xl opacity-80 animate-pulse-sphere"></div>
+
+                    <svg viewBox="0 0 460 460" fill="none" class="w-full h-full relative z-10 drop-shadow-2xl">
+                      <defs>
+                        <radialGradient id="homeSphereGrad" cx="35%" cy="30%" r="70%">
+                          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+                          <stop offset="20%" stop-color="#D6FB00" />
+                          <stop offset="60%" stop-color="#CDF22B" />
+                          <stop offset="85%" stop-color="#80A500" />
+                          <stop offset="100%" stop-color="#00545F" />
+                        </radialGradient>
+                        <linearGradient id="homeRibbonFront" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#1F2228" />
+                          <stop offset="40%" stop-color="#08090B" />
+                          <stop offset="85%" stop-color="#021E18" />
+                          <stop offset="100%" stop-color="#CDF22B" stop-opacity="0.4" />
+                        </linearGradient>
+                        <linearGradient id="homeRibbonBack" x1="100%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stop-color="#08090B" />
+                          <stop offset="60%" stop-color="#14161A" />
+                          <stop offset="100%" stop-color="#00545F" stop-opacity="0.6" />
+                        </linearGradient>
+                      </defs>
+
+                      <!-- Rotating Orbital Axis -->
+                      <circle cx="230" cy="230" r="195" stroke="#CDF22B" stroke-width="1.2" stroke-dasharray="14 18" opacity="0.5" class="animate-spin-slow origin-center" />
+                      <circle cx="230" cy="230" r="160" stroke="#00545F" stroke-width="0.8" stroke-dasharray="8 24" opacity="0.4" />
+
+                      <!-- Back 3D Black Ribbon -->
+                      <path class="animate-ribbon-2" d="M 60 210 C 60 120, 160 80, 270 90 C 370 100, 420 180, 390 280 C 365 360, 260 410, 160 380 C 90 360, 60 290, 60 210 Z"
+                            fill="url(#homeRibbonBack)" stroke="#08090B" stroke-width="2" opacity="0.95" />
+
+                      <!-- Center Luminous Sphere -->
+                      <circle cx="230" cy="230" r="78" fill="url(#homeSphereGrad)" class="animate-pulse-sphere origin-center" />
+
+                      <!-- Front Interlocking 3D Ribbon Twist -->
+                      <path class="animate-ribbon-1" d="M 120 130 C 180 180, 230 220, 330 200 C 400 185, 410 270, 350 330 C 280 400, 170 380, 130 310 C 100 250, 160 190, 260 170 C 330 155, 340 100, 270 90 C 200 80, 140 100, 120 130 Z"
+                            fill="url(#homeRibbonFront)" stroke="#CDF22B" stroke-width="1.6" stroke-opacity="0.45" />
+
+                      <!-- Glass Shimmer -->
+                      <rect x="170" y="210" width="160" height="24" rx="12" fill="#FFFFFF" fill-opacity="0.3" transform="rotate(-25 170 210)" />
+                    </svg>
+
+                    <!-- Dynamic Floating Card 1 -->
+                    <div class="absolute top-2 right-1 bg-midnight/90 backdrop-blur-md text-ivory border border-lime/30 rounded-2xl p-4 shadow-tactile-dark z-20 min-w-[150px] animate-pulse-dot">
+                      <div class="flex items-center justify-between gap-2 mb-1">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-lime/90 font-display">Time Lost</span>
+                        <span class="w-2 h-2 rounded-full bg-lime animate-ping"></span>
+                      </div>
+                      <div class="text-2xl font-bold font-display text-lime">47 min</div>
+                      <div class="text-[10px] text-ivory/50 mt-0.5">unnoticed daily wait</div>
+                    </div>
+
+                    <!-- Dynamic Floating Card 2 -->
+                    <div class="absolute bottom-4 left-0 bg-teal/90 backdrop-blur-md text-ivory border border-lime/30 rounded-2xl p-4 shadow-tactile-dark z-20 min-w-[160px]">
+                      <div class="text-[10px] font-bold uppercase tracking-wider text-lime-pale font-display mb-1">Privacy Exposure</div>
+                      <div class="flex items-center gap-2">
+                        <span class="text-2xl font-bold font-display text-ivory">68%</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full bg-lime text-midnight font-bold">Unchecked</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- B. THE PROBLEM SECTION -->
+          <section class="py-20 md:py-28 bg-ivory border-t border-black/[0.06]">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+              <div class="max-w-2xl mb-14">
+                <span class="inline-block text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-teal/10 text-teal font-display mb-3">
+                  THE SILENT REALITY
+                </span>
+                <h2 class="font-display font-bold text-3xl md:text-5xl text-midnight tracking-tight mb-4">
+                  What if you could see <span class="text-lime bg-midnight px-2 py-0.5 rounded-xl inline-block shadow-tactile-dark">what you're losing?</span>
+                </h2>
+                <p class="text-midnight/70 leading-relaxed font-body">
+                  Some of the biggest losses happen silently. We experience them every day, but rarely measure their true impact.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+                <div class="card-unseen bg-white p-6 rounded-3xl border border-midnight/10 shadow-tactile-light hover:border-lime">
+                  <div class="text-2xl mb-3">⏱</div>
+                  <div class="text-xs font-bold text-teal font-display mb-1">TIME</div>
+                  <h3 class="font-display font-bold text-base text-midnight mb-2">Minutes Disappear</h3>
+                  <p class="text-xs text-midnight/65 leading-relaxed">Public queues and uncalculated friction quietly steal productive daily hours.</p>
+                </div>
+                <div class="card-unseen bg-white p-6 rounded-3xl border border-midnight/10 shadow-tactile-light hover:border-lime">
+                  <div class="text-2xl mb-3">⚡</div>
+                  <div class="text-xs font-bold text-teal font-display mb-1">EFFORT</div>
+                  <h3 class="font-display font-bold text-base text-midnight mb-2">Contributions Overlooked</h3>
+                  <p class="text-xs text-midnight/65 leading-relaxed">Quiet individual dedication remains unacknowledged in group dynamics.</p>
+                </div>
+                <div class="card-unseen bg-white p-6 rounded-3xl border border-midnight/10 shadow-tactile-light hover:border-lime">
+                  <div class="text-2xl mb-3">🔒</div>
+                  <div class="text-xs font-bold text-coral font-display mb-1">PRIVACY</div>
+                  <h3 class="font-display font-bold text-base text-midnight mb-2">Personal Data Exposed</h3>
+                  <p class="text-xs text-midnight/65 leading-relaxed">Unread terms and broad permissions quietly trade your digital sovereignty.</p>
+                </div>
+                <div class="card-unseen bg-white p-6 rounded-3xl border border-midnight/10 shadow-tactile-light hover:border-lime">
+                  <div class="text-2xl mb-3">🎯</div>
+                  <div class="text-xs font-bold text-teal font-display mb-1">OPPORTUNITY</div>
+                  <h3 class="font-display font-bold text-base text-midnight mb-2">Hours Wasted</h3>
+                  <p class="text-xs text-midnight/65 leading-relaxed">Students and creators lose peak focus cycles to untracked routine drift.</p>
+                </div>
+                <div class="card-unseen bg-white p-6 rounded-3xl border border-midnight/10 shadow-tactile-light hover:border-lime">
+                  <div class="text-2xl mb-3">📷</div>
+                  <div class="text-xs font-bold text-teal font-display mb-1">INFORMATION</div>
+                  <h3 class="font-display font-bold text-base text-midnight mb-2">Hidden Metadata</h3>
+                  <p class="text-xs text-midnight/65 leading-relaxed">Images travel with embedded GPS coordinates and device fingerprints.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- C. FEATURED TOOLS PREVIEW -->
+          <section class="py-20 md:py-28 bg-ivory border-t border-black/[0.06]">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+              <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                  <span class="inline-block text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-lime text-midnight font-display mb-3 shadow-tactile-light">
+                    INTELLIGENCE SUITE
+                  </span>
+                  <h2 class="font-display font-bold text-3xl md:text-5xl text-midnight tracking-tight">
+                    Five tools designed to <span class="text-lime bg-midnight px-2 py-0.5 rounded-xl inline-block shadow-tactile-dark">reveal the unseen.</span>
+                  </h2>
+                </div>
+                <a href="/tools" class="nav-route btn-tactile-dark inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-bold font-display self-start md:self-auto">
+                  View All Tools →
+                </a>
+              </div>
+
+              <!-- 5 Featured Tool Cards -->
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+                <div class="card-unseen bg-white rounded-3xl border border-midnight/10 p-7 shadow-tactile-light hover:border-lime flex flex-col justify-between">
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-teal font-display px-2.5 py-1 rounded-full bg-teal/10 inline-block mb-4">Time Analysis</span>
+                    <h3 class="font-display font-bold text-xl text-midnight mb-2">Time Intelligence</h3>
+                    <p class="text-xs text-midnight/70 leading-relaxed mb-6">Understand delays, wait-time friction, and lost hours in public queues.</p>
+                  </div>
+                  <a href="/tools#tool-time" class="nav-route text-xs font-bold text-midnight hover:text-teal font-display">Explore Tool →</a>
+                </div>
+
+                <div class="card-unseen bg-midnight text-ivory rounded-3xl border border-lime/30 p-7 shadow-tactile-dark flex flex-col justify-between">
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-lime font-display px-2.5 py-1 rounded-full bg-lime/10 inline-block mb-4">Productivity</span>
+                    <h3 class="font-display font-bold text-xl text-ivory mb-2">Student Time Tracker</h3>
+                    <p class="text-xs text-ivory/70 leading-relaxed mb-6">Analyze daily student routines and turn unproductive habits into deep focus.</p>
+                  </div>
+                  <a href="/tools#tool-student" class="nav-route text-xs font-bold text-lime hover:underline font-display">Explore Tool →</a>
+                </div>
+
+                <div class="card-unseen bg-white rounded-3xl border border-midnight/10 p-7 shadow-tactile-light hover:border-lime flex flex-col justify-between">
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-teal font-display px-2.5 py-1 rounded-full bg-teal/10 inline-block mb-4">Collaboration</span>
+                    <h3 class="font-display font-bold text-xl text-midnight mb-2">Group Contribution</h3>
+                    <p class="text-xs text-midnight/70 leading-relaxed mb-6">Analyze message distribution and participation patterns objectively.</p>
+                  </div>
+                  <a href="/tools#tool-group" class="nav-route text-xs font-bold text-midnight hover:text-teal font-display">Explore Tool →</a>
+                </div>
+
+                <div class="card-unseen bg-midnight text-ivory rounded-3xl border border-lime/30 p-7 shadow-tactile-dark flex flex-col justify-between">
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-coral font-display px-2.5 py-1 rounded-full bg-coral/20 inline-block mb-4">Digital Privacy</span>
+                    <h3 class="font-display font-bold text-xl text-ivory mb-2">Privacy & Terms Analyzer</h3>
+                    <p class="text-xs text-ivory/70 leading-relaxed mb-6">Decode what applications request through terms and sensor permissions.</p>
+                  </div>
+                  <a href="/tools#tool-privacy" class="nav-route text-xs font-bold text-lime hover:underline font-display">Explore Tool →</a>
+                </div>
+
+                <div class="card-unseen bg-white rounded-3xl border border-midnight/10 p-7 shadow-tactile-light hover:border-lime flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-midnight font-display px-2.5 py-1 rounded-full bg-lime inline-block mb-4">Digital Forensics</span>
+                    <h3 class="font-display font-bold text-xl text-midnight mb-2">Image Metadata Intelligence</h3>
+                    <p class="text-xs text-midnight/70 leading-relaxed mb-6">Inspect embedded GPS coordinates, capture devices, and sanitize files.</p>
+                  </div>
+                  <a href="/tools#tool-metadata" class="nav-route text-xs font-bold text-midnight hover:text-teal font-display">Explore Tool →</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- D. HOW IT WORKS -->
+          <section class="py-20 md:py-28 bg-midnight text-ivory">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+              <div class="text-center max-w-xl mx-auto mb-16">
+                <span class="text-xs font-bold tracking-widest uppercase text-lime font-display mb-2 block">METHODOLOGY</span>
+                <h2 class="font-display font-bold text-3xl md:text-5xl text-ivory tracking-tight">
+                  From invisible <span class="text-lime">to undeniable.</span>
+                </h2>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 text-center hover:border-lime/40 transition-colors">
+                  <div class="w-12 h-12 rounded-2xl bg-lime text-midnight font-display font-bold text-lg flex items-center justify-center mx-auto mb-4">01</div>
+                  <h3 class="font-display font-bold text-base mb-1 text-ivory">COLLECT</h3>
+                  <p class="text-xs text-ivory/60 leading-relaxed">Bring your data, activities or information securely.</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 text-center hover:border-lime/40 transition-colors">
+                  <div class="w-12 h-12 rounded-2xl bg-lime text-midnight font-display font-bold text-lg flex items-center justify-center mx-auto mb-4">02</div>
+                  <h3 class="font-display font-bold text-base mb-1 text-ivory">ANALYSE</h3>
+                  <p class="text-xs text-ivory/60 leading-relaxed">Let intelligent systems identify hidden friction and leaks.</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 text-center hover:border-lime/40 transition-colors">
+                  <div class="w-12 h-12 rounded-2xl bg-lime text-midnight font-display font-bold text-lg flex items-center justify-center mx-auto mb-4">03</div>
+                  <h3 class="font-display font-bold text-base mb-1 text-ivory">REVEAL</h3>
+                  <p class="text-xs text-ivory/60 leading-relaxed">Transform complex parameters into visual clarity.</p>
+                </div>
+                <div class="p-6 rounded-3xl bg-white/5 border border-white/10 text-center hover:border-lime/40 transition-colors">
+                  <div class="w-12 h-12 rounded-2xl bg-lime text-midnight font-display font-bold text-lg flex items-center justify-center mx-auto mb-4">04</div>
+                  <h3 class="font-display font-bold text-base mb-1 text-ivory">IMPROVE</h3>
+                  <p class="text-xs text-ivory/60 leading-relaxed">Use verifiable insights to make smarter, sharper decisions.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- E. FINAL CTA -->
+          <section class="py-24 bg-ivory text-center relative overflow-hidden">
+            <div class="max-w-3xl mx-auto px-6 relative z-10">
+              <h2 class="font-display font-bold text-4xl md:text-6xl text-midnight tracking-tight mb-5">
+                Ready to see what <span class="text-lime bg-midnight px-3 py-0.5 rounded-2xl inline-block shadow-tactile-dark">others miss?</span>
+              </h2>
+              <p class="text-lg text-midnight/70 mb-8 max-w-xl mx-auto font-body">
+                Explore a smarter way to understand the hidden losses around you.
+              </p>
+              <a href="/tools" class="nav-route btn-tactile-lime inline-flex items-center gap-3 px-10 py-5 rounded-2xl text-base font-bold font-display">
+                Explore the Tools Directory →
+              </a>
+            </div>
+          </section>
+        </div>
+      `;
+    }
+
+    // PAGE 2: ABOUT (/about)
+    function renderAboutPage() {
+      return `
+        <div class="page-container bg-ivory">
+          
+          <!-- Editorial Hero -->
+          <section class="py-20 md:py-32 border-b border-black/[0.07] relative overflow-hidden bg-grid">
+            <div class="max-w-5xl mx-auto px-6 md:px-12 text-center">
+              <span class="inline-block text-xs font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full bg-midnight text-lime font-display mb-6 shadow-tactile-light">
+                THE UNSEEN MANIFESTO
+              </span>
+              <h1 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-midnight tracking-[-0.04em] leading-[0.92] mb-8">
+                Not everything lost<br />
+                <span class="text-lime bg-midnight px-4 py-1 rounded-2xl inline-block shadow-tactile-dark transform -rotate-1">is visible.</span>
+              </h1>
+              <p class="text-xl md:text-2xl text-midnight/80 font-body leading-relaxed max-w-3xl mx-auto font-light">
+                UNSEEN was created to reveal the invisible losses that influence our everyday lives. We believe that understanding what goes unnoticed is the first step towards meaningful change.
+              </p>
+            </div>
+          </section>
+
+          <!-- 01 & 02: Our Story and Our Mission -->
+          <section class="py-20 md:py-28 max-w-6xl mx-auto px-6 md:px-12">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <span class="text-xs font-bold tracking-widest uppercase text-teal font-display block mb-2">01 // THE GENESIS</span>
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-midnight mb-6 tracking-tight">Our Story</h2>
+                <div class="space-y-4 text-midnight/70 leading-relaxed font-body text-base">
+                  <p>
+                    Modern life is filled with high-resolution dashboards for things that are easy to count: bank balances, social likes, and battery percentages. Yet the resources that truly shape human well-being disappear silently.
+                  </p>
+                  <p>
+                    We wait in queues without measuring the collective human hours extinguished. We agree to digital terms without understanding the personal identity markers surrendered. We collaborate in teams where the quietest contributors bear the heaviest loads unnoticed.
+                  </p>
+                  <p>
+                    UNSEEN was founded as an analytical antidote to this systemic blindness — turning intangible resource leaks into explicit, actionable clarity.
+                  </p>
+                </div>
+              </div>
+              <div class="bg-midnight text-ivory p-10 md:p-12 rounded-3xl border border-lime/30 shadow-tactile-dark">
+                <span class="text-xs font-bold tracking-widest uppercase text-lime font-display block mb-2">02 // THE DIRECTIVE</span>
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-ivory mb-6 tracking-tight">Our Mission</h2>
+                <p class="text-ivory/80 text-lg leading-relaxed font-body mb-6">
+                  To make hidden resource losses <strong class="text-lime font-bold">understandable, measurable and actionable</strong> through intelligent analytical tools.
+                </p>
+                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 text-xs text-ivory/60 leading-relaxed font-mono">
+                  TARGET: Time friction, collaborative inequity, uninspected permissions, and embedded digital forensic trails.
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 03: Our Vision -->
+          <section class="py-20 md:py-28 bg-midnight text-ivory relative overflow-hidden">
+            <div class="max-w-5xl mx-auto px-6 md:px-12 text-center relative z-10">
+              <span class="text-xs font-bold tracking-widest uppercase text-lime font-display block mb-3">03 // THE HORIZON</span>
+              <h2 class="font-display font-bold text-4xl md:text-6xl text-ivory tracking-tight mb-6">Our Vision</h2>
+              <p class="text-xl md:text-2xl text-ivory/80 font-body leading-relaxed max-w-3xl mx-auto font-light mb-10">
+                To build a world where individuals, educators, and organizations make better, more deliberate decisions through heightened awareness and uncompromising analytical transparency.
+              </p>
+              <div class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-lime/10 border border-lime/30 text-lime font-display font-bold text-sm">
+                <span>Awareness</span> <span>→</span> <span>Measurement</span> <span>→</span> <span>Action</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 04: What We Believe -->
+          <section class="py-20 md:py-28 max-w-6xl mx-auto px-6 md:px-12">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+              <span class="text-xs font-bold tracking-widest uppercase text-teal font-display block mb-2">04 // FOUNDATIONAL PRINCIPLES</span>
+              <h2 class="font-display font-bold text-3xl md:text-5xl text-midnight tracking-tight">What We Believe</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light">
+                <div class="text-lime font-display font-bold text-2xl mb-3">01</div>
+                <h3 class="font-display font-bold text-xl text-midnight mb-2">Awareness creates change.</h3>
+                <p class="text-xs text-midnight/70 leading-relaxed font-body">You cannot solve a leak you don't acknowledge. Illumination is the prerequisite of all reform.</p>
+              </div>
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light">
+                <div class="text-teal font-display font-bold text-2xl mb-3">02</div>
+                <h3 class="font-display font-bold text-xl text-midnight mb-2">Data should create understanding.</h3>
+                <p class="text-xs text-midnight/70 leading-relaxed font-body">Analytical tools must simplify reality rather than generating cognitive fatigue and numerical clutter.</p>
+              </div>
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light">
+                <div class="text-midnight font-display font-bold text-2xl mb-3">03</div>
+                <h3 class="font-display font-bold text-xl text-midnight mb-2">Every contribution matters.</h3>
+                <p class="text-xs text-midnight/70 leading-relaxed font-body">Healthy collaboration honors all forms of participation without reducing humans to raw message counts.</p>
+              </div>
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light">
+                <div class="text-coral font-display font-bold text-2xl mb-3">04</div>
+                <h3 class="font-display font-bold text-xl text-midnight mb-2">Privacy deserves transparency.</h3>
+                <p class="text-xs text-midnight/70 leading-relaxed font-body">No user should surrender financial or biological coordinates in exchange for basic application utility.</p>
+              </div>
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light md:col-span-2">
+                <div class="text-lime font-display font-bold text-2xl mb-3">05</div>
+                <h3 class="font-display font-bold text-xl text-midnight mb-2">Resources deserve better management.</h3>
+                <p class="text-xs text-midnight/70 leading-relaxed font-body">Time and human energy are finite, non-renewable assets. Protecting them from invisible friction is a moral imperative.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 05: Our Approach & Next Step -->
+          <section class="py-20 bg-ivory border-t border-black/[0.07] text-center">
+            <div class="max-w-3xl mx-auto px-6">
+              <span class="text-xs font-bold tracking-widest uppercase text-teal font-display block mb-2">05 // OUR APPROACH</span>
+              <h2 class="font-display font-bold text-3xl md:text-4xl text-midnight mb-6">Built to reveal what matters.</h2>
+              <p class="text-base text-midnight/70 leading-relaxed font-body mb-8">
+                Explore our full suite of five analytical engines designed to bring these principles into practical daily operation.
+              </p>
+              <a href="/tools" class="nav-route btn-tactile-lime inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-sm font-bold font-display">
+                Explore the Intelligence Suite →
+              </a>
+            </div>
+          </section>
+
+        </div>
+      `;
+    }
+
+    // PAGE 3: TOOLS (/tools) — THE DIGITAL INTELLIGENCE LABORATORY (WITH LIVE INTERACTIVE SIMULATORS)
+    function renderToolsPage() {
+      return `
+        <div class="page-container bg-ivory">
+          
+          <!-- Laboratory Hero -->
+          <section class="py-16 md:py-24 border-b border-black/[0.08] relative overflow-hidden bg-grid" style="background-color: #FAF8F3;">
+            <div class="max-w-6xl mx-auto px-6 md:px-12 text-center relative z-10">
+              <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full bg-midnight text-lime font-display mb-5 shadow-tactile-light">
+                THE UNSEEN TOOLKIT // LABORATORY
+              </span>
+              <h1 class="font-display font-bold text-4xl md:text-7xl text-midnight tracking-[-0.04em] leading-[0.95] mb-6">
+                Discover what<br />
+                <span class="text-lime bg-midnight px-4 py-1 rounded-2xl inline-block shadow-tactile-dark transform -rotate-1">you've been missing.</span>
+              </h1>
+              <p class="text-lg md:text-xl text-midnight/75 font-body leading-relaxed max-w-2xl mx-auto mb-10">
+                Five intelligent perspectives. One mission. Revealing the things that usually go unnoticed with live interactive diagnostics.
+              </p>
+
+              <!-- Interactive Category Tabs -->
+              <div class="flex flex-wrap items-center justify-center gap-2 bg-white/80 p-2 rounded-2xl border border-midnight/10 shadow-sm max-w-2xl mx-auto">
+                <a href="#tool-time" class="tool-tab px-3.5 py-1.5 rounded-xl text-xs font-bold font-display text-midnight hover:bg-lime/30 transition-colors">01 // Time</a>
+                <a href="#tool-student" class="tool-tab px-3.5 py-1.5 rounded-xl text-xs font-bold font-display text-midnight hover:bg-lime/30 transition-colors">02 // Student</a>
+                <a href="#tool-group" class="tool-tab px-3.5 py-1.5 rounded-xl text-xs font-bold font-display text-midnight hover:bg-lime/30 transition-colors">03 // Group</a>
+                <a href="#tool-privacy" class="tool-tab px-3.5 py-1.5 rounded-xl text-xs font-bold font-display text-midnight hover:bg-lime/30 transition-colors">04 // Privacy</a>
+                <a href="#tool-metadata" class="tool-tab px-3.5 py-1.5 rounded-xl text-xs font-bold font-display text-midnight hover:bg-lime/30 transition-colors">05 // Forensics</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- 5 Bespoke Tool Presentations -->
+          <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-20 space-y-24">
+            
+            <!-- TOOL 01 — TIME INTELLIGENCE WITH LIVE INTERACTIVE SLIDER -->
+            <section id="tool-time" class="scroll-mt-28 bg-white rounded-3xl border-2 border-midnight/10 p-8 md:p-14 shadow-tactile-light">
+              <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6">
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal/10 text-teal text-xs font-bold font-display mb-4">
+                    <span>CATEGORY 01</span> <span>//</span> <span>TIME ANALYSIS</span>
+                  </div>
+                  <h2 class="font-display font-bold text-3xl md:text-5xl text-midnight tracking-tight leading-tight mb-4">
+                    "Time doesn't disappear.<br />
+                    <span class="text-lime bg-midnight px-2 py-0.5 rounded-xl inline-block shadow-tactile-dark">It gets lost."</span>
+                  </h2>
+                  <p class="text-midnight/70 leading-relaxed font-body text-base mb-6">
+                    Understand waiting time and delays in public queues. Reveal hidden friction, measure wasted collective hours, and identify concrete opportunities for infrastructural improvement.
+                  </p>
+                  
+                  <!-- Interactive Simulator Slider -->
+                  <div class="p-5 rounded-2xl bg-ivory border border-midnight/10 mb-8 space-y-3">
+                    <div class="flex justify-between text-xs font-bold font-display text-midnight">
+                      <span>Daily Queue Waiting Time:</span>
+                      <span id="slider-val" class="text-teal font-mono font-bold text-sm">35 minutes</span>
+                    </div>
+                    <input type="range" id="time-slider" min="10" max="120" value="35" class="w-full h-2 rounded-lg cursor-pointer bg-midnight/15" oninput="updateTimeSim(this.value)" />
+                    <div class="flex justify-between text-[11px] text-midnight/50 font-mono">
+                      <span>10m (Light)</span>
+                      <span>60m (Normal)</span>
+                      <span>120m (Severe)</span>
+                    </div>
+                  </div>
+
+                  <a href="#launch-time-intelligence" class="btn-tactile-dark inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-bold font-display">
+                    Launch Full Queue Simulator →
+                  </a>
+                </div>
+
+                <div class="lg:col-span-6 bg-ivory rounded-2xl border border-midnight/10 p-6 md:p-8">
+                  <div class="flex items-center justify-between text-xs font-bold font-display text-midnight/50 mb-4">
+                    <span>LIVE QUEUE FLOW METRIC</span>
+                    <span id="sim-status" class="text-coral animate-pulse">● Active Bottleneck Detected</span>
+                  </div>
+
+                  <div class="relative bg-white rounded-xl border border-midnight/10 p-6 flex flex-col justify-between shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                      <div class="w-16 h-16 rounded-full border-2 border-midnight flex items-center justify-center relative shadow-sm">
+                        <div id="sim-clock-hand" class="w-1 h-6 bg-midnight absolute top-2 rounded origin-bottom transform rotate-45 transition-transform duration-300"></div>
+                        <div class="w-5 h-1 bg-lime absolute right-3 rounded"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-midnight"></div>
+                      </div>
+                      <div class="text-right">
+                        <div id="sim-monthly-loss" class="text-3xl font-bold font-display text-midnight">17.5 hrs</div>
+                        <div class="text-[10px] text-midnight/50 font-display">Estimated Monthly Loss</div>
+                      </div>
+                    </div>
+                    
+                    <div class="space-y-2">
+                      <div class="text-[11px] font-bold text-midnight/70 font-display flex justify-between">
+                        <span>Queue Inefficiency Index</span>
+                        <span id="sim-percent" class="text-coral font-bold">58% idle wait</span>
+                      </div>
+                      <div class="w-full bg-midnight/10 h-3.5 rounded-full overflow-hidden flex">
+                        <div id="sim-bar-active" class="bg-teal h-full transition-all duration-300" style="width: 42%;"></div>
+                        <div id="sim-bar-idle" class="bg-coral h-full transition-all duration-300" style="width: 58%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- TOOL 02 — STUDENT TIME TRACKER WITH LIVE DAY SELECTOR -->
+            <section id="tool-student" class="scroll-mt-28 bg-midnight text-ivory rounded-3xl border border-lime/30 p-8 md:p-14 shadow-tactile-dark">
+              <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 lg:order-2">
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime/10 text-lime text-xs font-bold font-display mb-4">
+                    <span>CATEGORY 02</span> <span>//</span> <span>PRODUCTIVITY</span>
+                  </div>
+                  <h2 class="font-display font-bold text-3xl md:text-5xl text-ivory tracking-tight leading-tight mb-4">
+                    "Every hour<br />
+                    <span class="text-lime">tells a story."</span>
+                  </h2>
+                  <p class="text-ivory/70 leading-relaxed font-body text-base mb-6">
+                    Understand how students distribute their time, isolate fragmentation patterns, and discover structured opportunities to protect energy and master daily academic routines.
+                  </p>
+
+                  <!-- Interactive Day Switcher -->
+                  <div class="mb-8">
+                    <div class="text-xs font-bold font-display text-ivory/60 mb-2">SELECT CALENDAR SAMPLE DAY:</div>
+                    <div class="flex gap-2">
+                      <button onclick="selectDay('Mon')" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold font-display bg-lime text-midnight shadow-sm">Mon</button>
+                      <button onclick="selectDay('Wed')" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold font-display bg-white/10 text-ivory hover:bg-white/20">Wed</button>
+                      <button onclick="selectDay('Fri')" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold font-display bg-white/10 text-ivory hover:bg-white/20">Fri</button>
+                      <button onclick="selectDay('Sun')" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold font-display bg-white/10 text-ivory hover:bg-white/20">Sun</button>
+                    </div>
+                  </div>
+
+                  <a href="#launch-student-tracker" class="btn-tactile-lime inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-bold font-display">
+                    Explore Student Tracker →
+                  </a>
+                </div>
+
+                <div class="lg:col-span-6 lg:order-1 bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+                  <div class="flex justify-between items-center mb-4">
+                    <span id="student-day-label" class="text-xs font-bold font-display text-lime">MONDAY FOCUS CADENCE</span>
+                    <span id="student-score" class="text-xs font-mono font-bold text-lime-pale">Score: 82/100</span>
+                  </div>
+                  
+                  <div id="student-bars" class="space-y-3 mb-6 transition-all duration-300">
+                    <div class="flex items-center gap-3 text-xs">
+                      <span class="w-16 font-mono text-ivory/60">08:00</span>
+                      <div class="flex-1 bg-lime h-6 rounded-lg text-midnight font-bold px-3 flex items-center text-[10px]">Deep Mathematics Flow (92%)</div>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs">
+                      <span class="w-16 font-mono text-ivory/60">11:30</span>
+                      <div class="flex-1 bg-coral/80 h-6 rounded-lg text-ivory font-bold px-3 flex items-center text-[10px]">Fragmented Context-Switch (24%)</div>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs">
+                      <span class="w-16 font-mono text-ivory/60">15:00</span>
+                      <div class="flex-1 bg-teal h-6 rounded-lg text-ivory font-bold px-3 flex items-center text-[10px]">Laboratory Synthesis (85%)</div>
+                    </div>
+                  </div>
+
+                  <div class="p-3.5 bg-white/5 rounded-xl text-center text-xs text-ivory/70 border border-white/5">
+                    Recoverable productive capacity: <strong class="text-lime font-bold">+3.2 hours/day</strong>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- TOOL 03 — GROUP CONTRIBUTION ANALYZER WITH MESSAGE STREAM PULSE -->
+            <section id="tool-group" class="scroll-mt-28 bg-white rounded-3xl border border-midnight/10 p-8 md:p-14 shadow-tactile-light">
+              <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6">
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal/10 text-teal text-xs font-bold font-display mb-4">
+                    <span>CATEGORY 03</span> <span>//</span> <span>COLLABORATION INTELLIGENCE</span>
+                  </div>
+                  <h2 class="font-display font-bold text-3xl md:text-5xl text-midnight tracking-tight leading-tight mb-4">
+                    "See the effort behind<br />
+                    <span class="text-lime bg-midnight px-2 py-0.5 rounded-xl inline-block shadow-tactile-dark">every message."</span>
+                  </h2>
+                  <p class="text-midnight/70 leading-relaxed font-body text-base mb-6">
+                    Upload exported group conversations and let AI analyze participation patterns, timeline involvement, and distribution balance across collaborative teams.
+                  </p>
+
+                  <!-- Ethical Disclaimer -->
+                  <div class="p-4 rounded-2xl bg-ivory border-l-4 border-teal text-xs text-midnight/80 font-body leading-relaxed mb-8">
+                    <strong class="text-teal font-bold block mb-1">Ethical Analysis Notice:</strong>
+                    Message activity alone is an indicator of involvement, not definitive proof of effort, substantive quality, or true collaborative impact.
+                  </div>
+
+                  <a href="#launch-group-analyzer" class="btn-tactile-dark inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-bold font-display">
+                    Explore Group Analyzer →
+                  </a>
+                </div>
+
+                <div class="lg:col-span-6 bg-ivory rounded-2xl border border-midnight/10 p-6 md:p-8">
+                  <div class="text-xs font-bold font-display text-midnight/60 mb-4 flex justify-between">
+                    <span>TEAM INTERACTION TOPOLOGY</span>
+                    <span class="text-teal font-mono">342 msgs mapped</span>
+                  </div>
+                  
+                  <div class="h-56 bg-white rounded-xl border border-midnight/10 p-4 flex items-center justify-center relative overflow-hidden">
+                    <div class="w-18 h-18 w-20 h-20 rounded-full bg-lime text-midnight font-bold font-display flex flex-col items-center justify-center text-xs shadow-tactile-light z-10 animate-pulse-dot">
+                      <span>Lead</span>
+                      <span class="text-[10px] text-midnight/70 font-mono">42%</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-teal text-ivory text-[10px] font-bold flex flex-col items-center justify-center absolute left-8 top-6 shadow-sm">
+                      <span>Dev</span>
+                      <span class="text-[9px] text-ivory/70 font-mono">28%</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-full bg-teal text-ivory text-[10px] font-bold flex flex-col items-center justify-center absolute right-8 top-8 shadow-sm">
+                      <span>Des</span>
+                      <span class="text-[9px] text-ivory/70 font-mono">18%</span>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-coral/80 text-ivory text-[9px] font-bold flex flex-col items-center justify-center absolute bottom-4 shadow-sm">
+                      <span>Rev</span>
+                      <span class="text-[8px] text-ivory/70 font-mono">12%</span>
+                    </div>
+                    
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none stroke-midnight/20" stroke-width="1.5">
+                      <line x1="50%" y1="50%" x2="22%" y2="28%" stroke-dasharray="4 4" />
+                      <line x1="50%" y1="50%" x2="78%" y2="32%" stroke-dasharray="4 4" />
+                      <line x1="50%" y1="50%" x2="50%" y2="82%" stroke-dasharray="4 4" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- TOOL 04 — PRIVACY & TERMS ANALYZER WITH INTERACTIVE RISK TOGGLES -->
+            <section id="tool-privacy" class="scroll-mt-28 bg-midnight text-ivory rounded-3xl border border-lime/30 p-8 md:p-14 shadow-tactile-dark">
+              <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 lg:order-2">
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coral/20 text-coral text-xs font-bold font-display mb-4">
+                    <span>CATEGORY 04</span> <span>//</span> <span>DIGITAL PRIVACY</span>
+                  </div>
+                  <h2 class="font-display font-bold text-3xl md:text-5xl text-ivory tracking-tight leading-tight mb-4">
+                    "Before you agree,<br />
+                    <span class="text-lime">understand."</span>
+                  </h2>
+                  <p class="text-ivory/70 leading-relaxed font-body text-base mb-6">
+                    Understand app permissions and legal terms. Discover what personal information, financial identifiers, background sensors, and digital access an application actually requests.
+                  </p>
+
+                  <div class="space-y-3 mb-8 text-xs text-ivory/80 font-mono">
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-coral"></span> Precise Background Geolocation harvesting flags</div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-coral"></span> Third-party data broker transmission mapping</div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-lime"></span> Plain-language rights revocation guidance</div>
+                  </div>
+
+                  <a href="#launch-privacy-analyzer" class="btn-tactile-lime inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-bold font-display">
+                    Explore Privacy Analyzer →
+                  </a>
+                </div>
+
+                <div class="lg:col-span-6 lg:order-1 bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+                  <div class="flex justify-between items-center mb-4">
+                    <span class="text-xs font-bold font-display text-coral">INTERACTIVE SENSOR AUDIT</span>
+                    <span id="privacy-score-badge" class="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-coral text-ivory">Risk Score: 85/100</span>
+                  </div>
+
+                  <div class="space-y-3">
+                    <label class="p-3.5 rounded-xl bg-coral/10 border border-coral/30 flex items-center justify-between cursor-pointer hover:bg-coral/15 transition-colors">
+                      <div class="flex items-center gap-3">
+                        <span class="text-lg">📍</span>
+                        <div>
+                          <div class="text-xs font-bold text-ivory font-display">Always-On GPS Geofence</div>
+                          <div class="text-[10px] text-ivory/60">Harvests coordinates during sleep mode</div>
+                        </div>
+                      </div>
+                      <input type="checkbox" checked onchange="toggleRisk(this, 35)" class="w-4 h-4 rounded text-lime focus:ring-lime" />
+                    </label>
+
+                    <label class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between cursor-pointer hover:bg-white/10 transition-colors">
+                      <div class="flex items-center gap-3">
+                        <span class="text-lg">🎙</span>
+                        <div>
+                          <div class="text-xs font-bold text-ivory font-display">Ambient Acoustic Microphone</div>
+                          <div class="text-[10px] text-ivory/60">Passive background speech indexing</div>
+                        </div>
+                      </div>
+                      <input type="checkbox" checked onchange="toggleRisk(this, 30)" class="w-4 h-4 rounded text-lime focus:ring-lime" />
+                    </label>
+
+                    <label class="p-3.5 rounded-xl bg-coral/10 border border-coral/30 flex items-center justify-between cursor-pointer hover:bg-coral/15 transition-colors">
+                      <div class="flex items-center gap-3">
+                        <span class="text-lg">💳</span>
+                        <div>
+                          <div class="text-xs font-bold text-ivory font-display">Telemetry & Broker ID Linkage</div>
+                          <div class="text-[10px] text-ivory/60">Transmits advertising device identifier</div>
+                        </div>
+                      </div>
+                      <input type="checkbox" checked onchange="toggleRisk(this, 20)" class="w-4 h-4 rounded text-lime focus:ring-lime" />
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- TOOL 05 — IMAGE METADATA INTELLIGENCE WITH LIVE SANITIZATION SCANNER -->
+            <section id="tool-metadata" class="scroll-mt-28 bg-white rounded-3xl border border-midnight/10 p-8 md:p-14 shadow-tactile-light">
+              <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6">
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime text-midnight text-xs font-bold font-display mb-4">
+                    <span>CATEGORY 05</span> <span>//</span> <span>DIGITAL FORENSICS</span>
+                  </div>
+                  <h2 class="font-display font-bold text-3xl md:text-5xl text-midnight tracking-tight leading-tight mb-4">
+                    "Your images have<br />
+                    <span class="text-lime bg-midnight px-2 py-0.5 rounded-xl inline-block shadow-tactile-dark">hidden stories."</span>
+                  </h2>
+                  <p class="text-midnight/70 leading-relaxed font-body text-base mb-6">
+                    Inspect image metadata to discover available capture devices, timestamps, and embedded GPS coordinates. Create a cleaned copy with sensitive metadata removed before sharing.
+                  </p>
+
+                  <div class="space-y-3 mb-8 text-xs text-midnight/80 font-mono">
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-lime"></span> EXIF, IPTC, and XMP tag parser</div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-lime"></span> Embedded latitude/longitude map pinning</div>
+                    <div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-lime"></span> Zero-loss metadata stripping & sanitization</div>
+                  </div>
+
+                  <a href="#launch-metadata-analyzer" class="btn-tactile-dark inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-sm font-bold font-display">
+                    Explore Metadata Analyzer →
+                  </a>
+                </div>
+
+                <div class="lg:col-span-6 bg-ivory rounded-2xl border border-midnight/10 p-6 md:p-8">
+                  <div class="text-xs font-bold font-display text-midnight/60 mb-4 flex justify-between items-center">
+                    <span>FORENSIC EXIF SCANNER</span>
+                    <span id="scan-status-pill" class="text-[10px] px-2 py-0.5 rounded bg-coral/15 text-coral font-bold">Unsanitized Payload</span>
+                  </div>
+
+                  <div class="bg-white rounded-xl border border-midnight/10 p-5 font-mono text-xs space-y-2 text-midnight/80 relative overflow-hidden">
+                    <div id="scanner-line" class="absolute left-0 right-0 h-0.5 bg-lime shadow-[0_0_8px_#CDF22B] scanline-bar pointer-events-none"></div>
+
+                    <div class="flex justify-between border-b border-black/5 pb-1">
+                      <span class="text-midnight/50">Device Make:</span>
+                      <span id="exif-device" class="font-bold">Apple iPhone 15 Pro</span>
+                    </div>
+                    <div class="flex justify-between border-b border-black/5 pb-1">
+                      <span class="text-midnight/50">Lens / Shutter:</span>
+                      <span id="exif-lens" class="font-bold">24mm ƒ/1.78 1/250s</span>
+                    </div>
+                    <div class="flex justify-between border-b border-black/5 pb-1">
+                      <span class="text-midnight/50">Timestamp:</span>
+                      <span id="exif-time" class="font-bold">2026:10:14 17:42:09</span>
+                    </div>
+                    <div class="flex justify-between border-b border-black/5 pb-1 text-coral font-bold">
+                      <span>GPS Coordinates:</span>
+                      <span id="exif-gps">37.7749° N, 122.4194° W</span>
+                    </div>
+
+                    <div class="pt-3">
+                      <button id="sanitize-btn" onclick="executeSanitization()" class="btn-tactile-lime w-full py-2.5 rounded-xl font-display font-bold text-xs shadow-sm">
+                        Sanitize & Strip Sensitive Tags →
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      `;
+    }
+
+    // PAGE 4: IMPACT (/impact)
+    function renderImpactPage() {
+      return `
+        <div class="page-container bg-ivory">
+          
+          <!-- Impact Hero -->
+          <section class="py-20 md:py-32 border-b border-black/[0.07] bg-grid text-center">
+            <div class="max-w-5xl mx-auto px-6 md:px-12">
+              <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full bg-teal text-ivory font-display mb-6">
+                PURPOSE & MEASURABLE OUTCOMES
+              </span>
+              <h1 class="font-display font-bold text-4xl md:text-7xl text-midnight tracking-[-0.04em] leading-[0.95] mb-6">
+                Small invisible losses.<br />
+                <span class="text-lime bg-midnight px-4 py-1 rounded-2xl inline-block shadow-tactile-dark transform -rotate-1">Bigger consequences.</span>
+              </h1>
+              <p class="text-xl text-midnight/70 font-body leading-relaxed max-w-2xl mx-auto">
+                Understanding hidden resource loss helps us make smarter decisions about time, effort, privacy and information.
+              </p>
+            </div>
+          </section>
+
+          <!-- 5 Impact Areas Grid -->
+          <section class="py-20 md:py-28 max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+              
+              <!-- 01 Time Awareness -->
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light hover:border-lime transition-all">
+                <span class="text-xs font-bold font-display uppercase tracking-wider text-teal block mb-2">AREA 01</span>
+                <h3 class="font-display font-bold text-2xl text-midnight mb-4">Time Awareness</h3>
+                <div class="space-y-4 text-xs text-midnight/70 leading-relaxed font-body">
+                  <p><strong>The Problem:</strong> Waiting rooms, delayed systems, and line queues absorb minutes that quietly add up to days of unrecovered human capability.</p>
+                  <p><strong>What UNSEEN Reveals:</strong> Empirical queue flow logs, aggregated delay friction, and operational bottlenecks.</p>
+                  <p><strong>The Improvement:</strong> Streamlined scheduling, queue redesign, and reclaiming high-value productive windows.</p>
+                </div>
+              </div>
+
+              <!-- 02 Student Productivity -->
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light hover:border-lime transition-all">
+                <span class="text-xs font-bold font-display uppercase tracking-wider text-teal block mb-2">AREA 02</span>
+                <h3 class="font-display font-bold text-2xl text-midnight mb-4">Student Productivity</h3>
+                <div class="space-y-4 text-xs text-midnight/70 leading-relaxed font-body">
+                  <p><strong>The Problem:</strong> Fragmentation and untracked passive drift degrade deep learning without students realizing where the hours vanished.</p>
+                  <p><strong>What UNSEEN Reveals:</strong> Continuous hourly focus distribution, context-switch penalties, and peak retention windows.</p>
+                  <p><strong>The Improvement:</strong> Intentional study architectures that reduce burnout while expanding academic mastery.</p>
+                </div>
+              </div>
+
+              <!-- 03 Collaborative Transparency -->
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light hover:border-lime transition-all">
+                <span class="text-xs font-bold font-display uppercase tracking-wider text-teal block mb-2">AREA 03</span>
+                <h3 class="font-display font-bold text-2xl text-midnight mb-4">Collaborative Equity</h3>
+                <div class="space-y-4 text-xs text-midnight/70 leading-relaxed font-body">
+                  <p><strong>The Problem:</strong> Group work frequently rewards performative noise over structural contribution, exhausting essential contributors.</p>
+                  <p><strong>What UNSEEN Reveals:</strong> Participation streams, task completion timelines, and communication balance indicators.</p>
+                  <p><strong>The Improvement:</strong> Balanced task delegation, empathetic leadership, and fair recognition of quiet effort.</p>
+                </div>
+              </div>
+
+              <!-- 04 Digital Privacy Awareness -->
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light hover:border-coral transition-all">
+                <span class="text-xs font-bold font-display uppercase tracking-wider text-coral block mb-2">AREA 04</span>
+                <h3 class="font-display font-bold text-2xl text-midnight mb-4">Digital Privacy Awareness</h3>
+                <div class="space-y-4 text-xs text-midnight/70 leading-relaxed font-body">
+                  <p><strong>The Problem:</strong> Default terms and hidden clauses systematically strip users of their personal telemetry and financial markers.</p>
+                  <p><strong>What UNSEEN Reveals:</strong> Translated permission scopes, background tracker links, and data broker transfer routes.</p>
+                  <p><strong>The Improvement:</strong> Proactive permission revocation and informed digital autonomy.</p>
+                </div>
+              </div>
+
+              <!-- 05 Information Protection -->
+              <div class="card-unseen p-8 rounded-3xl bg-white border border-midnight/10 shadow-tactile-light hover:border-lime transition-all md:col-span-2 lg:col-span-2">
+                <span class="text-xs font-bold font-display uppercase tracking-wider text-midnight block mb-2">AREA 05</span>
+                <h3 class="font-display font-bold text-2xl text-midnight mb-4">Information Protection & Digital Forensics</h3>
+                <div class="grid md:grid-cols-3 gap-4 text-xs text-midnight/70 leading-relaxed font-body">
+                  <div>
+                    <strong class="block text-midnight mb-1">The Problem:</strong>
+                    Casual photo uploads broadcast private residential coordinates, travel patterns, and device serial numbers to unknown recipients.
+                  </div>
+                  <div>
+                    <strong class="block text-midnight mb-1">What UNSEEN Reveals:</strong>
+                    Raw EXIF, GPS, and timestamp payloads embedded invisibly inside multimedia files.
+                  </div>
+                  <div>
+                    <strong class="block text-midnight mb-1">The Improvement:</strong>
+                    Automated pre-share sanitization, ensuring shared files tell only the story intended by the creator.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- Core Statement Section: Visibility is the first step towards change -->
+          <section class="py-24 bg-midnight text-ivory text-center relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-6 relative z-10">
+              <span class="text-xs font-bold tracking-widest uppercase text-lime font-display block mb-4">CORE DIRECTIVE</span>
+              <h2 class="font-display font-bold text-4xl md:text-6xl text-ivory tracking-tight leading-tight mb-8">
+                "Visibility is the first step<br />
+                <span class="text-lime">towards change."</span>
+              </h2>
+              <p class="text-lg text-ivory/70 max-w-xl mx-auto font-body mb-10 leading-relaxed">
+                When you measure the invisible, you gain the clarity needed to protect what matters.
+              </p>
+              <a href="/tools" class="nav-route btn-tactile-lime inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-sm font-bold font-display">
+                Put Intelligence to Work →
+              </a>
+            </div>
+          </section>
+
+        </div>
+      `;
+    }
+
+    // PAGE 5: CONTACT (/contact)
+    function renderContactPage() {
+      return `
+        <div class="page-container bg-ivory">
+          
+          <section class="py-20 md:py-28 bg-grid">
+            <div class="max-w-6xl mx-auto px-6 md:px-12">
+              
+              <div class="grid lg:grid-cols-12 gap-16 items-start">
+                
+                <!-- Left: Editorial Context -->
+                <div class="lg:col-span-5">
+                  <span class="inline-block text-xs font-bold tracking-widest uppercase px-3.5 py-1.5 rounded-full bg-midnight text-lime font-display mb-6 shadow-tactile-light">
+                    OPEN COLLABORATION
+                  </span>
+                  
+                  <h1 class="font-display font-bold text-4xl md:text-6xl text-midnight tracking-[-0.035em] leading-[0.95] mb-6">
+                    Have something worth<br />
+                    <span class="text-lime bg-midnight px-3 py-1 rounded-2xl inline-block shadow-tactile-dark transform -rotate-1">revealing?</span>
+                  </h1>
+
+                  <p class="text-lg text-midnight/70 leading-relaxed font-body mb-8">
+                    We'd love to hear your ideas, feedback and opportunities to collaborate on expanding the UNSEEN Resource Intelligence Platform.
+                  </p>
+
+                  <div class="space-y-6 pt-6 border-t border-black/10">
+                    <div>
+                      <div class="text-xs font-bold tracking-widest uppercase text-teal font-display mb-1">Direct Inquiries</div>
+                      <a href="mailto:hello@unseen.platform" class="text-base font-bold text-midnight hover:text-teal font-display">hello@unseen.platform</a>
+                    </div>
+                    <div>
+                      <div class="text-xs font-bold tracking-widest uppercase text-teal font-display mb-1">Platform Status</div>
+                      <div class="text-sm text-midnight/70 font-body">Buildathon Technology Suite — v2.4 Active</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right: Interactive Contact Form -->
+                <div class="lg:col-span-7 bg-white p-8 md:p-12 rounded-3xl border border-midnight/10 shadow-tactile-light">
+                  <div id="contact-form-container">
+                    <h2 class="font-display font-bold text-2xl text-midnight mb-2">Send a Message</h2>
+                    <p class="text-xs text-midnight/60 mb-6 font-body">Fill out the fields below to initiate a dialogue with the UNSEEN team.</p>
+
+                    <form id="contact-form" class="space-y-5" onsubmit="handleContactSubmit(event)">
+                      <div>
+                        <label for="contact-name" class="block text-xs font-bold font-display uppercase tracking-wider text-midnight/80 mb-2">Full Name</label>
+                        <input type="text" id="contact-name" required placeholder="Alex Rivera" class="w-full px-4 py-3 rounded-2xl bg-ivory border border-midnight/15 text-midnight text-sm focus:outline-none focus:border-midnight focus:ring-2 focus:ring-lime/40 transition-all font-body" />
+                      </div>
+
+                      <div>
+                        <label for="contact-email" class="block text-xs font-bold font-display uppercase tracking-wider text-midnight/80 mb-2">Email Address</label>
+                        <input type="email" id="contact-email" required placeholder="alex@domain.com" class="w-full px-4 py-3 rounded-2xl bg-ivory border border-midnight/15 text-midnight text-sm focus:outline-none focus:border-midnight focus:ring-2 focus:ring-lime/40 transition-all font-body" />
+                      </div>
+
+                      <div>
+                        <label for="contact-subject" class="block text-xs font-bold font-display uppercase tracking-wider text-midnight/80 mb-2">Subject / Area of Interest</label>
+                        <select id="contact-subject" class="w-full px-4 py-3 rounded-2xl bg-ivory border border-midnight/15 text-midnight text-sm focus:outline-none focus:border-midnight focus:ring-2 focus:ring-lime/40 transition-all font-body">
+                          <option value="general">General Feedback</option>
+                          <option value="time">Time Intelligence Partnership</option>
+                          <option value="student">Student Tracker Deployment</option>
+                          <option value="group">Group Analyzer Integration</option>
+                          <option value="privacy">Privacy & Terms Forensics</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label for="contact-message" class="block text-xs font-bold font-display uppercase tracking-wider text-midnight/80 mb-2">Message</label>
+                        <textarea id="contact-message" rows="4" required placeholder="Describe what invisible resource loss you're seeing..." class="w-full px-4 py-3 rounded-2xl bg-ivory border border-midnight/15 text-midnight text-sm focus:outline-none focus:border-midnight focus:ring-2 focus:ring-lime/40 transition-all font-body"></textarea>
+                      </div>
+
+                      <button type="submit" class="btn-tactile-dark w-full py-4 rounded-2xl text-sm font-bold font-display flex items-center justify-center gap-2">
+                        <span>Send Message</span>
+                        <span>→</span>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+      `;
+    }
+
+    // 404 NOT FOUND PAGE
+    function renderNotFoundPage() {
+      return `
+        <div class="page-container py-32 text-center bg-ivory">
+          <div class="max-w-md mx-auto px-6">
+            <span class="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-coral/20 text-coral font-display mb-4 inline-block">404 // NOT FOUND</span>
+            <h1 class="font-display font-bold text-5xl text-midnight mb-4">Lost in the Invisible</h1>
+            <p class="text-sm text-midnight/70 mb-8 font-body">The destination you requested cannot be located within the current platform mapping.</p>
+            <a href="/" class="nav-route btn-tactile-lime inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-bold font-display">
+              Return to Home →
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+
+    // -------------------------------------------------------------
+    // CLIENT-SIDE ROUTER ENGINE
+    // -------------------------------------------------------------
+    const routes = {
+      '/': { title: 'UNSEEN — Make the Invisible Visible | Resource Intelligence', render: renderHomePage },
+      '/about': { title: 'About UNSEEN — Not everything lost is visible', render: renderAboutPage },
+      '/tools': { title: 'The UNSEEN Toolkit — Digital Intelligence Laboratory', render: renderToolsPage },
+      '/impact': { title: 'Our Impact — UNSEEN Resource Intelligence', render: renderImpactPage },
+      '/contact': { title: 'Contact UNSEEN — Have something worth revealing?', render: renderContactPage },
+    };
+
+    function updateActiveNavState(currentPath) {
+      let normalized = currentPath.toLowerCase();
+      if (normalized.length > 1 && normalized.endsWith('/')) {
+        normalized = normalized.slice(0, -1);
+      }
+
+      // Update Desktop header links
+      const desktopLinks = document.querySelectorAll('#main-nav .nav-link');
+      desktopLinks.forEach(link => {
+        const linkRoute = link.getAttribute('data-route');
+        if (linkRoute === normalized) {
+          link.classList.add('nav-item-active');
+        } else {
+          link.classList.remove('nav-item-active');
+        }
+      });
+
+      // Update Mobile-Only Bottom Navigation links
+      const bottomLinks = document.querySelectorAll('#app-bottom-nav .bottom-nav-item');
+      bottomLinks.forEach(link => {
+        const linkRoute = link.getAttribute('data-route');
+        const dot = link.querySelector('.bottom-nav-dot');
+        const icon = link.querySelector('.bottom-nav-icon');
+        const label = link.querySelector('.bottom-nav-label');
+
+        if (linkRoute === normalized) {
+          link.classList.add('bottom-item-active');
+          if (dot) dot.classList.remove('opacity-0');
+          if (label) {
+            label.classList.add('text-midnight', 'font-bold');
+            label.classList.remove('text-midnight/50', 'font-medium');
+          }
+          if (icon) {
+            icon.classList.add('text-midnight', 'stroke-[2.4px]');
+            icon.classList.remove('text-midnight/50');
+          }
+        } else {
+          link.classList.remove('bottom-item-active');
+          if (dot) dot.classList.add('opacity-0');
+          if (label) {
+            label.classList.remove('text-midnight', 'font-bold');
+            label.classList.add('text-midnight/50', 'font-medium');
+          }
+          if (icon) {
+            icon.classList.remove('text-midnight', 'stroke-[2.4px]');
+            icon.classList.add('text-midnight/50');
+          }
+        }
+      });
+    }
+
+    function navigate(pathname, shouldPush = true) {
+      const [path, hash] = pathname.split('#');
+      const normalizedPath = (!path || path === '') ? '/' : path;
+
+      const routeInfo = routes[normalizedPath] || {
+        title: '404 - Page Not Found | UNSEEN',
+        render: renderNotFoundPage,
+      };
+
+      if (shouldPush) {
+        window.history.pushState(null, routeInfo.title, pathname);
+      }
+
+      document.title = routeInfo.title;
+
+      const root = document.getElementById('app-root');
+      root.innerHTML = routeInfo.render();
+
+      updateActiveNavState(normalizedPath);
+
+      if (hash) {
+        setTimeout(() => {
+          const el = document.getElementById(hash);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      bindReveals();
+      bindHero3DParallax();
+
+      // No-op for mobile menu since Instagram-style bottom bar is active
+    }
+
+    // Scroll reveal observer
+    function bindReveals() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { rootMargin: '0px 0px -40px 0px', threshold: 0.1 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    // Interactive 3D Hero Parallax Mouse Motion
+    function bindHero3DParallax() {
+      const card = document.getElementById('hero-3d-card');
+      const heroSection = document.getElementById('hero-section');
+      if (!card || !heroSection) return;
+
+      heroSection.addEventListener('mousemove', (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `perspective(1000px) rotateY(${x * 16}deg) rotateX(${-y * 16}deg) translateZ(10px)`;
+      });
+
+      heroSection.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px)';
+      });
+    }
+
+    // Mobile menu toggle
+    function toggleMobileMenu(forceState) {
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon = document.getElementById('close-icon');
+
+      const isHidden = forceState !== undefined ? !forceState : mobileMenu.classList.contains('hidden');
+
+      if (isHidden) {
+        mobileMenu.classList.remove('hidden');
+        hamburgerIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        mobileMenu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      }
+    }
+
+    // Contact form feedback
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const container = document.getElementById('contact-form-container');
+      const name = document.getElementById('contact-name').value;
+      container.innerHTML = `
+        <div class="py-12 text-center space-y-4">
+          <div class="w-14 h-14 rounded-full bg-lime text-midnight text-2xl font-bold font-display flex items-center justify-center mx-auto shadow-tactile-light">✓</div>
+          <h3 class="font-display font-bold text-2xl text-midnight">Thank you, ${name}!</h3>
+          <p class="text-sm text-midnight/70 max-w-sm mx-auto font-body">Your message has been received in the UNSEEN sandbox laboratory. A response will be coordinated via your email address.</p>
+          <div class="pt-4">
+            <button onclick="navigate('/tools')" class="btn-tactile-dark px-6 py-2.5 rounded-2xl text-xs font-bold font-display">Explore Tools →</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // -------------------------------------------------------------
+    // INTERACTIVE TOOLS LABORATORY SIMULATOR FUNCTIONS
+    // -------------------------------------------------------------
+
+    // Simulator 1: Time Slider
+    window.updateTimeSim = function(val) {
+      const sliderVal = document.getElementById('slider-val');
+      const monthlyLoss = document.getElementById('sim-monthly-loss');
+      const percent = document.getElementById('sim-percent');
+      const barActive = document.getElementById('sim-bar-active');
+      const barIdle = document.getElementById('sim-bar-idle');
+      const clockHand = document.getElementById('sim-clock-hand');
+      const status = document.getElementById('sim-status');
+
+      if (!sliderVal) return;
+      sliderVal.textContent = val + ' minutes';
+      
+      const hours = ((val * 30) / 60).toFixed(1);
+      monthlyLoss.textContent = hours + ' hrs';
+      
+      const idlePercent = Math.min(85, Math.max(20, Math.round((val / 120) * 100)));
+      const activePercent = 100 - idlePercent;
+
+      percent.textContent = idlePercent + '% idle wait';
+      barActive.style.width = activePercent + '%';
+      barIdle.style.width = idlePercent + '%';
+
+      const deg = (val / 120) * 360;
+      clockHand.style.transform = `rotate(${deg}deg)`;
+
+      if (val > 45) {
+        status.textContent = '● High Friction Queue Alert';
+        status.className = 'text-coral animate-pulse font-bold';
+      } else {
+        status.textContent = '● Moderate Queue Latency';
+        status.className = 'text-teal font-bold';
+      }
+    };
+
+    // Simulator 2: Student Calendar Day Switcher
+    window.selectDay = function(day) {
+      const label = document.getElementById('student-day-label');
+      const score = document.getElementById('student-score');
+      const container = document.getElementById('student-bars');
+      const btns = document.querySelectorAll('.day-btn');
+
+      btns.forEach(b => {
+        if (b.textContent === day) {
+          b.className = 'day-btn px-3 py-1.5 rounded-xl text-xs font-bold font-display bg-lime text-midnight shadow-sm';
+        } else {
+          b.className = 'day-btn px-3 py-1.5 rounded-xl text-xs font-bold font-display bg-white/10 text-ivory hover:bg-white/20';
+        }
+      });
+
+      if (!label || !container) return;
+
+      if (day === 'Mon') {
+        label.textContent = 'MONDAY FOCUS CADENCE';
+        score.textContent = 'Score: 82/100';
+        container.innerHTML = `
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">08:00</span>
+            <div class="flex-1 bg-lime h-6 rounded-lg text-midnight font-bold px-3 flex items-center text-[10px]">Deep Mathematics Flow (92%)</div>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">11:30</span>
+            <div class="flex-1 bg-coral/80 h-6 rounded-lg text-ivory font-bold px-3 flex items-center text-[10px]">Fragmented Context-Switch (24%)</div>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">15:00</span>
+            <div class="flex-1 bg-teal h-6 rounded-lg text-ivory font-bold px-3 flex items-center text-[10px]">Laboratory Synthesis (85%)</div>
+          </div>
+        `;
+      } else if (day === 'Wed') {
+        label.textContent = 'WEDNESDAY EXAM SPRINT';
+        score.textContent = 'Score: 91/100';
+        container.innerHTML = `
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">09:00</span>
+            <div class="flex-1 bg-lime h-6 rounded-lg text-midnight font-bold px-3 flex items-center text-[10px]">Active Recall & Problem Sets (96%)</div>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">13:00</span>
+            <div class="flex-1 bg-lime h-6 rounded-lg text-midnight font-bold px-3 flex items-center text-[10px]">Focused Coding Deep-Dive (88%)</div>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">17:00</span>
+            <div class="flex-1 bg-teal h-6 rounded-lg text-ivory font-bold px-3 flex items-center text-[10px]">Literature Review (78%)</div>
+          </div>
+        `;
+      } else if (day === 'Fri') {
+        label.textContent = 'FRIDAY DRIFT PATTERN';
+        score.textContent = 'Score: 54/100';
+        container.innerHTML = `
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">10:00</span>
+            <div class="flex-1 bg-coral/80 h-6 rounded-lg text-ivory font-bold px-3 flex items-center text-[10px]">Social Multi-Tab Friction (32%)</div>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">14:00</span>
+            <div class="flex-1 bg-lime h-6 rounded-lg text-midnight font-bold px-3 flex items-center text-[10px]">Collaborative Project Sync (74%)</div>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">18:00</span>
+            <div class="flex-1 bg-coral/90 h-6 rounded-lg text-ivory font-bold px-3 flex items-center text-[10px]">Passive Streaming Drift (18%)</div>
+          </div>
+        `;
+      } else {
+        label.textContent = 'SUNDAY REGENERATION CADENCE';
+        score.textContent = 'Score: 76/100';
+        container.innerHTML = `
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">11:00</span>
+            <div class="flex-1 bg-teal h-6 rounded-lg text-ivory font-bold px-3 flex items-center text-[10px]">Weekly Planning & Ideation (80%)</div>
+          </div>
+          <div class="flex items-center gap-3 text-xs">
+            <span class="w-16 font-mono text-ivory/60">16:00</span>
+            <div class="flex-1 bg-lime h-6 rounded-lg text-midnight font-bold px-3 flex items-center text-[10px]">Creative Synthesis (84%)</div>
+          </div>
+        `;
+      }
+    };
+
+    // Simulator 4: Privacy Risk Meter
+    let activeRiskScore = 85;
+    window.toggleRisk = function(cb, delta) {
+      const badge = document.getElementById('privacy-score-badge');
+      if (cb.checked) {
+        activeRiskScore += delta;
+      } else {
+        activeRiskScore -= delta;
+      }
+      activeRiskScore = Math.min(100, Math.max(10, activeRiskScore));
+
+      if (badge) {
+        badge.textContent = `Risk Score: ${activeRiskScore}/100`;
+        if (activeRiskScore > 60) {
+          badge.className = 'text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-coral text-ivory';
+        } else if (activeRiskScore > 35) {
+          badge.className = 'text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-lime text-midnight';
+        } else {
+          badge.className = 'text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-teal text-ivory';
+        }
+      }
+    };
+
+    // Simulator 5: Image Metadata Sanitization Scanner
+    window.executeSanitization = function() {
+      const btn = document.getElementById('sanitize-btn');
+      const statusPill = document.getElementById('scan-status-pill');
+      const gps = document.getElementById('exif-gps');
+      const time = document.getElementById('exif-time');
+      const lens = document.getElementById('exif-lens');
+      const device = document.getElementById('exif-device');
+
+      if (!btn) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Stripping EXIF & GPS Tags...';
+      btn.className = 'w-full py-2.5 rounded-xl font-display font-bold text-xs bg-midnight text-lime animate-pulse';
+
+      setTimeout(() => {
+        gps.textContent = '[EXIF GPS STRIPPED / ZEROED]';
+        gps.className = 'text-lime font-bold';
+        time.textContent = '[TIMESTAMP REMOVED]';
+        lens.textContent = '[OPTICAL SIGNATURE REMOVED]';
+        device.textContent = '[GENERIC CLEAN CONTAINER]';
+
+        statusPill.textContent = 'Sanitized Clean Copy ✓';
+        statusPill.className = 'text-[10px] px-2 py-0.5 rounded bg-lime text-midnight font-bold shadow-sm';
+
+        btn.textContent = '✓ Metadata Sanitized & Protected';
+        btn.className = 'btn-tactile-dark w-full py-2.5 rounded-xl font-display font-bold text-xs';
+      }, 900);
+    };
+
+    // -------------------------------------------------------------
+    // INITIALIZATION & EVENT LISTENERS
+    // -------------------------------------------------------------
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#launch-')) {
+          if (href.startsWith('#launch-')) {
+            e.preventDefault();
+            alert('Interactive Tool Sandbox is active in demonstration mode.');
+          }
+          return;
+        }
+
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+
+        e.preventDefault();
+        navigate(href, true);
+      });
+
+      window.addEventListener('popstate', () => {
+        navigate(window.location.pathname + window.location.hash, false);
+      });
+
+      navigate(window.location.pathname + window.location.hash, false);
+    });
+  </script>
+</body>
+</html>
